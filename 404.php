@@ -1,59 +1,56 @@
-<?php get_header(); ?>
-
 <?php
-    global $wp_customize;
+/**
+ * The template for displaying 404 pages (Not Found).
+ *
+ * @package unite
+ */
 
-    if( isset( $wp_customize ) ) {
-        $breadcrumbs = true;
-        $classes = !(bool)get_theme_mod( 'mythemes-breadcrumbs', true ) ? 'hidden' : '';
-    }
-    else{
-        $breadcrumbs = (bool)get_theme_mod( 'mythemes-breadcrumbs', true );
-        $classes = '';
-    }
+get_header(); ?>
 
-    if( $breadcrumbs ){
-?>
-        <div class="mythemes-page-header <?php echo esc_attr( $classes ); ?>">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav class="mythemes-nav-inline">
-                            <ul class="mythemes-menu">
-                                <?php echo mythemes_breadcrumbs::home(); ?>
-                                <li></li>
-                            </ul>
-                        </nav>
-                        <h1><?php printf( __( 'Error %s' , 'cannyon' ) , number_format_i18n( 404 ) ); ?></h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-<?php
-    }
-?>
+	<div id="primary" class="content-area col-sm-12 col-md-8 <?php echo of_get_option( 'site_layout' ); ?>">
+		<main id="main" class="site-main" role="main">
 
-    <div class="content main-content">
-        <div class="container">
-            <div class="row">
+			<section class="error-404 not-found">
+				<header class="page-header">
+					<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'unite' ); ?></h1>
+				</header><!-- .page-header -->
 
-                <!-- CONTENT -->
-                <section class="col-lg-12">
+				<div class="page-content">
+					<p><?php _e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'unite' ); ?></p>
 
-                    <div>
-                        <h1 class="error-404"><?php echo number_format_i18n( 404 ); ?></h1>
-                        <big class="error-404-message"><?php _e( 'Resource not found' , 'cannyon' )?></big>
-                        <p class="error-404-description"><?php _e( 'We apologize but this page, post or resource does not exist or can not be found.' , 'cannyon' ) ?></p>
+					<?php get_search_form(); ?>
 
-                        <div class="error-404-search">
-                            <?php get_search_form(); ?>
-                        </div>
-                    <div>
+					<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
 
-                </section>
+					<?php if ( unite_categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
+					<div class="widget widget_categories">
+						<h2 class="widgettitle"><?php _e( 'Most Used Categories', 'unite' ); ?></h2>
+						<ul>
+						<?php
+							wp_list_categories( array(
+								'orderby'    => 'count',
+								'order'      => 'DESC',
+								'show_count' => 1,
+								'title_li'   => '',
+								'number'     => 10,
+							) );
+						?>
+						</ul>
+					</div><!-- .widget -->
+					<?php endif; ?>
 
-            </div>
-        </div>
-    </div>
+					<?php
+					/* translators: %1$s: smiley */
+					$archive_content = '<p>' . sprintf( __( 'Try looking in the monthly archives. %1$s', 'unite' ), convert_smilies( ':)' ) ) . '</p>';
+					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
+					?>
+
+					<?php the_widget( 'WP_Widget_Tag_Cloud' ); ?>
+
+				</div><!-- .page-content -->
+			</section><!-- .error-404 -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
 <?php get_footer(); ?>

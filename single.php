@@ -1,94 +1,32 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The Template for displaying all single posts.
+ *
+ * @package unite
+ */
 
-    <div class="content main-content">
-        <div class="container">
-            <div class="row">
+get_header(); ?>
 
-            <?php
-                global $post;
+	<div id="primary" class="content-area col-sm-12 col-md-8 <?php echo of_get_option( 'site_layout' ); ?>">
+		<main id="main" class="site-main" role="main">
 
-                /* GET LAYOUT DETAILS */
-                $mythemes_layout = new mythemes_layout( 'post' );
+		<?php while ( have_posts() ) : the_post(); ?>
 
-                /* LEFT SIDEBAR */
-                $mythemes_layout -> sidebar( 'left' );
-            ?>
-                <!-- CONTENT -->
-                <section class="<?php echo $mythemes_layout -> classes(); ?>">
+			<?php get_template_part( 'content', 'single' ); ?>
 
-                <?php
+			<?php unite_post_nav(); ?>
 
-                    if( have_posts() ){
-                        while( have_posts() ){
-                            the_post();
-                ?>
-                            <article <?php post_class(); ?>>
+			<?php
+				// If comments are open or we have at least one comment, load up the comment template
+				if ( comments_open() || '0' != get_comments_number() ) :
+					comments_template();
+				endif;
+			?>
 
-                                <!-- TITLE -->
-                                <h1 class="post-title"><?php the_title(); ?></h1>
-                          
-                                <!-- TOP META : AUTHOR / TIME / COMMENTS -->
-                                <?php get_template_part( 'templates/meta/top' ); ?>
+		<?php endwhile; // end of the loop. ?>
 
-                                <?php
-                                    $p_thumbnail = get_post( get_post_thumbnail_id( $post -> ID ) );
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
-                                    if( has_post_thumbnail( $post -> ID ) && isset( $p_thumbnail -> ID ) ){
-                                ?>
-                                        <div class="post-thumbnail overflow-wrapper">
-                                        <?php
-                                            echo get_the_post_thumbnail( $post -> ID , 'mythemes-classic' , array(
-                                                'alt' => mythemes_post::title( $post -> ID, true )
-                                            ));
-
-                                            $c_thumbnail = isset( $p_thumbnail -> post_excerpt ) ? esc_html( $p_thumbnail -> post_excerpt ) : null;
-
-                                            if( !empty( $c_thumbnail ) ){
-                                                echo '<div class="valign-bottom-cell-wrapper">';
-                                                echo '<footer class="valign-cell">' . $c_thumbnail . '</footer>';
-                                                echo '</div>';
-                                            }
-                                        ?>
-                                        </div>
-                                <?php
-                                    }
-                                ?>
-
-                                <!-- CONTENT -->
-                                <?php the_content(); ?>
-
-                                <div class="clearfix"></div>
-
-                            </article>
-
-                            <?php
-                                wp_link_pages( array( 
-                                    'before'        => '<div class="mythemes-paged-post"><span class="mythemes-pagination-title">' . __( 'Pages', 'cannyon' ) . ': </span>',
-                                    'after'         => '<div class="clearfix"></div></div>',
-                                    'link_before'   => '<span class="mythemes-pagination-item">',
-                                    'link_after'    => '</span>'
-                                ));
-                            ?>
-
-                            <?php get_template_part( 'templates/meta/bottom' ); ?>
-
-                            <!-- COMMENTS -->
-                            <?php comments_template(); ?>
-
-                <?php
-                        } /* END ARTICLE */
-                    }
-                ?>
-
-                </section>
-
-            <?php
-                /* RIGHT SIDEBAR */
-                $mythemes_layout -> sidebar( 'right' );
-            ?>
-            
-            </div>
-        </div>
-    </div>
-
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

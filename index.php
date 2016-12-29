@@ -1,57 +1,46 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The main template file.
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package unite
+ */
 
-	<?php
+get_header(); ?>
 
-		global $wp_query,$wp_customize;
+	<div id="primary" class="content-area col-sm-12 col-md-8">
+		<main id="main" class="site-main" role="main">
 
-	    if( isset( $wp_customize ) ) {
-	        $breadcrumbs = true;
-	        $classes = !(bool)get_theme_mod( 'mythemes-breadcrumbs', true ) ? 'hidden' : '';
-	    }
-	    else{
-	        $breadcrumbs = (bool)get_theme_mod( 'mythemes-breadcrumbs', true );
-	        $classes = '';
-	    }
+		<?php if ( have_posts() ) : ?>
 
-	    if( $breadcrumbs ){
-	?>
-	        <div class="mythemes-page-header <?php echo esc_attr( $classes ); ?>">
+			<?php /* Start the Loop */ ?>
+			<?php while ( have_posts() ) : the_post(); ?>
 
-		      	<div class="container">
-		        	<div class="row">
+				<?php
+					/* Include the Post-Format-specific template for the content.
+					 * If you want to override this in a child theme, then include a file
+					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+					 */
+					get_template_part( 'content', get_post_format() );
+				?>
 
-		          		<div class="col-sm-8 col-md-9 col-lg-9">
-		            		<nav class="mythemes-nav-inline">
-		              			<ul class="mythemes-menu">
-		                			<?php echo mythemes_breadcrumbs::home(); ?>
-		                			<li></li>
-		              			</ul>
-		            		</nav>
-		            		<h1 id="blog-title"><?php echo esc_html( get_theme_mod( 'blog-title' , __( 'Blog' , 'cannyon' ) ) ); ?></h1>
-		          		</div>
+			<?php endwhile; ?>
 
-		          		<div class="col-sm-4 col-md-3 col-lg-3 mythemes-posts-found">
-		                    <div class="found-details">
-		                        <?php echo mythemes_breadcrumbs::count( $wp_query ); ?>
-		                    </div>
-		                </div>
+			<?php unite_paging_nav(); ?>
 
-		        	</div>
-		      	</div>
+		<?php else : ?>
 
-		    </div>
-	<?php
-		}
-	?>
-        
-    <div class="content main-content">
-        <div class="container">
-            <div class="row">
-        
-                <?php get_template_part( 'templates/loop' ); ?>
+			<?php get_template_part( 'content', 'none' ); ?>
 
-            </div>
-        </div>
-    </div>
+		<?php endif; ?>
 
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

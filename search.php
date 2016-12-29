@@ -1,56 +1,38 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying Search Results pages.
+ *
+ * @package unite
+ */
 
-    <?php
-        global $wp_query,$wp_customize;
+get_header(); ?>
 
-        if( isset( $wp_customize ) ) {
-            $breadcrumbs = true;
-            $classes = !(bool)get_theme_mod( 'mythemes-breadcrumbs', true ) ? 'hidden' : '';
-        }
-        else{
-            $breadcrumbs = (bool)get_theme_mod( 'mythemes-breadcrumbs', true );
-            $classes = '';
-        }
+	<section id="primary" class="content-area col-sm-12 col-md-8 <?php echo of_get_option( 'site_layout' ); ?>">
+		<main id="main" class="site-main" role="main">
 
-        if( $breadcrumbs ){
-    ?>
-            <div class="mythemes-page-header <?php echo esc_attr( $classes ); ?>">
+		<?php if ( have_posts() ) : ?>
 
-                <div class="container">
-                    <div class="row">
+			<header class="page-header">
+				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'unite' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+			</header><!-- .page-header -->
 
-                        <div class="col-sm-8 col-md-9 col-lg-9">
-                            <nav class="mythemes-nav-inline">
-                                <ul class="mythemes-menu">
-                                    <?php echo mythemes_breadcrumbs::home(); ?>
-                                    <li></li>
+			<?php /* Start the Loop */ ?>
+			<?php while ( have_posts() ) : the_post(); ?>
 
-                                </ul>
-                            </nav>
-                            <h1><?php printf( __( 'Search results for "%s"' , 'cannyon' ), get_search_query() ); ?></h1>
-                        </div>
+				<?php get_template_part( 'content', 'search' ); ?>
 
-                        <div class="col-sm-4 col-md-3 col-lg-3 mythemes-posts-found">
-                            <div class="found-details">
-                                <?php echo mythemes_breadcrumbs::count( $wp_query ); ?>
-                            </div>
-                        </div>
+			<?php endwhile; ?>
 
-                    </div>
-                </div>
+			<?php unite_paging_nav(); ?>
 
-            </div>
-    <?php
-        }
-    ?>
+		<?php else : ?>
 
-    <div class="content main-content">
-        <div class="container">
-            <div class="row">
-                <?php get_template_part( 'templates/loop' ); ?>
-            </div>
-        </div>
-    </div>
+			<?php get_template_part( 'content', 'none' ); ?>
 
+		<?php endif; ?>
 
+		</main><!-- #main -->
+	</section><!-- #primary -->
+
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

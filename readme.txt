@@ -1,121 +1,59 @@
+/*========= About Theme =========*/
 
-    Cannyon
+Theme Name: Unite
+Theme URI: http://colorlib.com/wp/unite/
+Version: 2.0.2
+Tested up to: WP 4.5
 
+Author: Aigars Silkalns
+Author URI: http://colorlib.com/wp/
+License: GNU General Public License v3.0
+License URI: http://www.gnu.org/licenses/gpl.html
+-------------------------------------------------------
+Unite theme, Copyright 2014-2016 colorlib.com
+Unite WordPress theme is distributed under the terms of the GNU GPL
+Unite is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
+-------------------------------------------------------
 
-    Thank you for choosing myThem.es and use one of our WordPress Themes
-    your choice is greatly appreciated!
+/*========= Credits =========*/
 
+Unite theme uses:
 
-    myThem.es Marketplace provides WordPress themes with
-    the best quality and the smallest prices.
-    
+* CPT Bootstrap Carousel licensed under the GPLv2 license (http://www.gnu.org/licenses/gpl-2.0.html)
+* FontAwesome (http://fontawesome.io) licensed under the SIL OFL 1.1 http://scripts.sil.org/OFL)
+* TGM Plugin Activation library (https://github.com/thomasgriffin/TGM-Plugin-Activation) licensed under GNU General Public License v2.0 or later
+* WP-Bootstrap-NavWalker licensed under the GPLv2 license (http://www.gnu.org/licenses/gpl-2.0.html)
 
-    Cannyon, Copyright 2015 myThem.es
+/*========= Description =========*/
 
-    Cannyon is distributed under the terms of the
-    GNU GENERAL PUBLIC LICENSE
+Unite is a clean, modern and fully responsive WordPress wedding theme built using Bootstrap 3 which makes it optimized for tablets and mobile. It is a highly customizable theme with unlimited color variations that can be tweaked via simple yet powerful Theme Options. Theme has a built-in Popular Posts Widget, Infinite Scroll (powered by Jatpack) and translation support. It's now available in German and French. Theme features fancy image slider, SEO friendly structure, logo support, social links and widgetized homepage.  This theme was built to be used for wedding related websites but can be tweaked to be used as any other image-centric blog such as travel. Unite theme now supports WooCommerce to create your own eStore.
 
+For questions, comments or bug reports, visit Colorlib support forum (http://colorlib.com/wp/forums).
 
-   *****************************************************************************
+/*========= Installation =========*/
 
+You can install the theme through the WordPress installer under "Themes" > "Install themes" by searching for "Unite".
 
-                     ________________
-                    |_____    _______|
-     ___ ___ ___   __ __  |  |  __       ____   ___ ___ ___       ____   ____ 
-    |   |   |   | |_ |  | |  | |  |___  |  __| |   |   |   |     |  __| |  __|
-    |   |   |   |  | |  | |  | |  __  | |  __| |   |   |   |  _  |  __| |__  |
-    |___|___|___|   |  |  |__| |_ ||_ | |____| |___|___|___| |_| |____| |____|   
-                    |_|
+Alternatively you can download the file, unzip it and move the unzipped contents to the "wp-content/themes" folder of your WordPress installation. You will then be able to activate the theme.
 
+Right after you activate Unite, you'll see message on top of your screen, asking you to install CPT Bootstrap Carousel (optional). Make sure you install and activate it if you want to setup image slider just like on theme demo.
 
+If you dismiss this notice, you can install this plugin later via Appearance->Install plugins.
 
-   *****************************************************************************
+/*========= Theme Features =========*/
 
+* Bootstrap 3 integration
+* Responsive design
+* Unlimited color variations
+* SEO friendly
+* Theme Options
+* Image centric approach
+* Internationalized & localization
+* Drop-down Menu
+* Cross-browser compatibility
+* Threaded Comments
+* Gravatar ready
 
+/*========= Documentation =========*/
 
-    - Theme URI         : http://mythem.es/item/cannyon-free-wordpress-theme/
-    - Support URI       : http://mythem.es/forums/forum/themes/cannyon/cannyon-free/
-
-    - Author            : myThem.es
-    - Author URI        : http://mythem.es
-
-    - Demo URI          : http://test.mythem.es/cannyon-wordpress/
-
-
-    
-   *****************************************************************************
-
-
-
-    - More about            : http://www.google.com/fonts#AboutPlace:about
-    - Used Fonts            : Oleo Script Swash Caps, Montserrat, Open+Sans, Lato
-
-    - Used Icons Fonts	    : Fontello
-    - Fontello URI 	        : http://fontello.com/
-
-
-
-   *****************************************************************************
-
-
-
-    Header image licensed under Creative Commons Zero
-    https://unsplash.com/apu889
-	
-    Bootstrap 3.3.1, Copyright (c) 2010-14, Twitter, Inc.
-    Bootstrap is under the terms of MIT License.
-    http://getbootstrap.com
-
-
-    HTML5 Shiv v3.7.0, Copyright (c) @afarkas @jdalton @jon_neal @rem
-    HTML5 Shiv v3.7.0 is under the terms of MIT License.
-
-    jScrollPane - v2.0.20 - 2014-10-23 is dual licensed under the MIT or GPL licenses.
-    http://jscrollpane.kelvinluck.com/
-
-    Mousewheel 3.1.9, Copyright (c) 2013 Brandon Aaron
-    Mousewheel 3.1.9 is under the terms of MIT License.
-    http://brandon.aaron.sh
-
-    prettyPhoto v3.1.5, Copyright (c) Stephane Caron
-    prettyPhoto is under the terms of GPLV2 License.
-    You are free to use prettyPhoto in commercial projects as long as the
-    copyright header is left intact.
-
-    http://www.no-margin-for-errors.com
-
-    Respond.js v1.4.2, Copyright (c) 2013 Scott Jehl
-    Respond.js v1.4.2 is under the terms of MIT License.
-    http://scottjehl.com
-
-    
-
-   *****************************************************************************
-
-
-
-    HOW TO USE
-
-
-    1. WELCOME MESSAGE
-
-    Thank you for choosing myThem.es and use one of our WordPress Themes your
-    choice is greatly appreciated!
-
-    If you have any questions ask!
-
-    Before ask, please read all topics from our forums, marked as AUTHOR SUGGEST:
-    http://mythem.es/forums/forum/themes/cannyon/cannyon-free/
-
-    And please help us to increase the theme quality ( report bugs ).
-
-    Also please help us to increase the theme rank!
-
-
-    2. CUSTOMIZE YOUR THEME
-
-    This theme comes with a set of options what allow you to customize content,
-    header, layouts, social items and others.
-
-    You can see theme options if you go to Admin Dashboard
-    Appearance > Customize
+Theme documentation is available on http://colorlib.com/wp/support/unite

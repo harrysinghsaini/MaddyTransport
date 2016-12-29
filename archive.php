@@ -1,95 +1,49 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying Archive pages.
+ *
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package unite
+ */
 
-    <?php
-        global $wp_query,$wp_customize;
+get_header(); ?>
 
-        if( isset( $wp_customize ) ) {
-            $breadcrumbs = true;
-            $classes = !(bool)get_theme_mod( 'mythemes-breadcrumbs', true ) ? 'hidden' : '';
-        }
-        else{
-            $breadcrumbs = (bool)get_theme_mod( 'mythemes-breadcrumbs', true );
-            $classes = '';
-        }
+	<section id="primary" class="content-area col-sm-12 col-md-8 <?php echo of_get_option( 'site_layout' ); ?>">
+		<main id="main" class="site-main" role="main">
 
-        if( $breadcrumbs ){
-    ?>
-            <div class="mythemes-page-header <?php echo esc_attr( $classes ); ?>">
+		<?php if ( have_posts() ) : ?>
 
-                <div class="container">
-                    <div class="row">
+			<header class="page-header">
+				<?php
+					the_archive_title( '<h1 class="page-title">', '</h1>' );
+					the_archive_description( '<div class="taxonomy-description">', '</div>' );
+				?>
+			</header><!-- .page-header -->
 
-                        <div class="col-sm-8 col-md-9 col-lg-9">
-                            <nav class="mythemes-nav-inline">
-                                <ul class="mythemes-menu">
-                                    <?php echo mythemes_breadcrumbs::home(); ?>
+			<?php /* Start the Loop */ ?>
+			<?php while ( have_posts() ) : the_post(); ?>
 
-                                    <?php
-                                        
-                                        if ( is_day() ){
-                                            $day    = get_the_date( );
-                                            $m      = get_the_date( 'm' );
-                                            $d      = get_the_date( 'd' );
+				<?php
+					/* Include the Post-Format-specific template for the content.
+					 * If you want to override this in a child theme, then include a file
+					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+					 */
+					get_template_part( 'content', get_post_format() );
+				?>
 
-                                            $month  = get_the_date( 'F' );
-                                            $year   = get_the_date( 'Y' );
-                                            $FY     = get_the_date( 'F Y' );
+			<?php endwhile; ?>
 
-                                            echo '<li><a href="' . esc_url( get_year_link( $year ) ) . '" title="' . sprintf( __( 'Yearly archives - %s' , 'cannyon' ), esc_attr( $year ) ) . '">'  . esc_html( $year ) . '</a></li>';
-                                            echo '<li><a href="' . esc_url( get_month_link( $year, $m ) ) . '" title="' . sprintf( __( 'Monthly archives - %s' , 'cannyon' ), esc_attr( $FY ) ) . '">'  . esc_html( $month ) . '</a></li>';
-                                            echo '<li><time datetime="' . esc_attr( get_the_date( 'Y-m-d' ) ) . '">' . esc_html( $d ) . '</time></li>';
+			<?php unite_paging_nav(); ?>
 
-                                            $title  = __( 'Daily Archives' , 'cannyon' );
+		<?php else : ?>
 
-                                        }else if ( is_month() ){
-                                            $month  = get_the_date( 'F' );
-                                            $year   = get_the_date( 'Y' );
+			<?php get_template_part( 'content', 'none' ); ?>
 
-                                            echo '<li><a href="' . esc_url( get_year_link( $year ) ) . '" title="' . sprintf( __( 'Yearly archives - %s' , 'cannyon' ), esc_attr( $year ) ) . '">'  . esc_html( $year ) . '</a></li>';
-                                            echo '<li><time datetime="' . esc_attr( get_the_date( 'Y-m-d' ) ) . '">' . esc_html( $month ) . '</time></li>';
-                                            
-                                            $title  = __( 'Monthly Archives' , 'cannyon' );
+		<?php endif; ?>
 
-                                        }else if ( is_year() ){
-                                            $year   = get_the_date( 'Y' );
-                                            echo '<li><time datetime="' . esc_attr( get_the_date( 'Y-m-d' ) ) . '">'  . esc_html( $year ) . '</time></li>';
+		</main><!-- #main -->
+	</section><!-- #primary -->
 
-                                            $title  = __( 'Yearly Archives' , 'cannyon' );
-
-                                        }else{
-                                            $year   = __( 'Archives' , 'cannyon' );
-                                            echo '<li>' . esc_html( $year ) . '</li>';
-                                            $title  = $year;
-                                        }
-                                    ?>
-                                    <li></li>
-                                </ul>
-                            </nav>
-                            <h1><?php echo esc_html( $title ); ?></h1>
-                        </div>
-
-                        <div class="col-sm-4 col-md-3 col-lg-3 mythemes-posts-found">
-                            <div class="found-details">
-                                <?php echo mythemes_breadcrumbs::count( $wp_query ); ?>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-    <?php
-        }
-    ?>
-
-    <div class="content main-content">
-        <div class="container">
-            <div class="row">
-
-                <?php get_template_part( 'templates/loop' ); ?>
-
-            </div>
-        </div>
-    </div>
-
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>
